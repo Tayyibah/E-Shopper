@@ -257,7 +257,7 @@ MyApp = (function () {
                 $("#txtPictureName").val(resp.data.PictureName);
                 $("#txtName").val(resp.data.Name);
                 $("#txtPrice").val(resp.data.Price);
-                $("#prodimg").show().attr("src", window.BasePath + "UploadedFiles/" + resp.data.PictureName);
+                $("#prodimg").show().attr("src", window.BasePath + "/UploadedFiles/" + resp.data.PictureName);
 
             });
 
