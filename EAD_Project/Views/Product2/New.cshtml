@@ -123,78 +123,79 @@
 </body>
 <script id="commenttemplate" type="text/x-handlebars-template">
     <div class="comment">
-        <div class="picture">
-            @*<img src="~/UploadedFiles/")/{{PictureName}} />*@            
-    @*<img src='@Url.Content("~/UploadedFiles")/{{PictureName}}' />*@         
-               <img src="httpbsef14a011apphbcom-3.apphb.com/UploadedFiles"/{{PictureName}} />
-            </div>
-            <div>
-                <span class="name">{{UserName}}</span>
-                <span class="comment-text"> {{CommentText}}</span> <br />
-                <span class="comment-text commenton">{{CommentOn}}</span>
-            </div>
+        <div class="picture">           
+             @*<img src="~/UploadedFiles/")/{{PictureName}} />*@      
+              <img src="UploadedFiles/{{PictureName}}" />
+            @*<img src='@Url.Content("~/UploadedFiles")/{{PictureName}}' />*@
+            @*<img src='@Url.Content("~/UploadedFiles")/{{PictureName}}' />*@
+        </div>
+        <div>
+            <span class="name">{{UserName}}</span>
+            <span class="comment-text"> {{CommentText}}</span> <br />
+            <span class="comment-text commenton">{{CommentOn}}</span>
+        </div>
+    </div>
+    <br />
+    <div style="clear:both"></div>
+</script>
+
+
+
+
+
+
+
+<script id="listtemplate" type="text/x-handlebars-template">
+    {{#each data}}
+    <div class="item" pid="{{ProductID}}">
+
+        <img src='@Url.Content("~/UploadedFiles")/{{PictureName}}' style="width:100px;height:100px;" />
+
+        <div style="float:left">
+            Product Id: {{ProductID}} <br />
+            Name: {{Name}} <br />
+            Price: {{Price}} <br />
+            Created On {{CreatedOn}} <b>By</b> {{CreatedBy}}
+        </div>
+        <div style="clear:both">
+            @if (EAD_Project.Security.SessionManager.User.IsAdmin)
+            {
+                <a href="/Product/Edit/{{ProductID}}">Edit</a>
+                <a href="/Product/Delete/{{ProductID}}">Delete</a>
+                <input type="submit" value="Edit" class="editbutton" pid="{{ProductID}}" />
+                <br /><br /><br /><br /><hr>
+            }
+        </div>
+        <br /><br /><br /><br />
+        <div class="commentarea">
+            <textarea class="txtComment" rows="1" cols="50"></textarea>
+            <button id="addcomment" value="Add" class="addcomment">Add Comment</button>
         </div>
         <br />
-        <div style="clear:both"></div>
-    </script>
+        <div class="comments">
+            {{#each Comments}}
+            <div class="comment" id="@EAD_Project.Security.SessionManager.User.UserID">
+                <div class="picture">
 
-
-
-
-
-
-
-    <script id="listtemplate" type="text/x-handlebars-template">
-        {{#each data}}
-        <div class="item" pid="{{ProductID}}">
-
-            <img src='@Url.Content("~/UploadedFiles")/{{PictureName}}' style="width:100px;height:100px;" />
-
-            <div style="float:left">
-                Product Id: {{ProductID}} <br />
-                Name: {{Name}} <br />
-                Price: {{Price}} <br />
-                Created On {{CreatedOn}} <b>By</b> {{CreatedBy}}
-            </div>
-            <div style="clear:both">
-                @if (EAD_Project.Security.SessionManager.User.IsAdmin)
-                {
-                    <a href="/Product/Edit/{{ProductID}}">Edit</a>
-                    <a href="/Product/Delete/{{ProductID}}">Delete</a>
-                    <input type="submit" value="Edit" class="editbutton" pid="{{ProductID}}" />
-                    <br /><br /><br /><br /><hr>
-                }
-            </div>
-            <br /><br /><br /><br />
-            <div class="commentarea">
-                <textarea class="txtComment" rows="1" cols="50"></textarea>
-                <button id="addcomment" value="Add" class="addcomment">Add Comment</button>
+                    <img src='@Url.Content("~/UploadedFiles")/{{User.PictureName}}' />
+                </div>
+                <div>
+                    <span class="name">{{UserName}}</span>
+                    <span class="comment-text"> {{CommentText}}</span> <br />
+                    <span class="comment-text commenton">{{CommentOn}}</span>
+                </div>
             </div>
             <br />
-            <div class="comments">
-                {{#each Comments}}
-                <div class="comment" id="@EAD_Project.Security.SessionManager.User.UserID">
-                    <div class="picture">
-
-                        <img src='@Url.Content("~/UploadedFiles")/{{User.PictureName}}' />
-                    </div>
-                    <div>
-                        <span class="name">{{UserName}}</span>
-                        <span class="comment-text"> {{CommentText}}</span> <br />
-                        <span class="comment-text commenton">{{CommentOn}}</span>
-                    </div>
-                </div>
-                <br />
-                <div style="clear:both"></div>
-                {{/each}}
-            </div>
+            <div style="clear:both"></div>
+            {{/each}}
         </div>
-        {{/each}}
-    </script>
-    <script id="commenttemplate" type="text/x-handlebars-template">
-        <div class="comment">
-            <div class="picture">
-                @*'@Url.Content("~/UploadedFiles")/@Model.PictureName'*@
+    </div>
+    {{/each}}
+</script>
+<script id="commenttemplate" type="text/x-handlebars-template">
+    <div class="comment">
+        <div class="picture">
+            @*'@Url.Content("~/UploadedFiles")/@Model.PictureName'*@
             <img src='@Url.Content("~/UploadedFiles")/{{PictureName}}' />
         </div>
         <div>
