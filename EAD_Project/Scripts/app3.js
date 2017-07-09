@@ -28,9 +28,9 @@ MyApp = (function () {
 
         var settings = {
             type: "POST",
-            url: 'http://httpbsef14a011apphbcom-3.apphb.com/Home/SaveUsers',
+            url: '~/Home/SaveUsers',
             contentType: false,
-            processData: false,
+            processData: true,
             data: data,
             success: function (data, status, xhr) {
             //    if (success==true) {
