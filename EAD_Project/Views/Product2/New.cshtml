@@ -168,7 +168,8 @@
 
             </div>
             <div class="col-sm-6">
-                <img src="~/UploadedFiles/{{PictureName}}.jpg" class="girl img-responsive" alt="" />
+
+                <img src="/UploadedFiles/{{PictureName}}" class="girl img-responsive" alt="" />
             </div>
             <br />
             <br />
@@ -208,7 +209,7 @@
                     {{#each Comments}}
                     <div class="comment">
                         <div class="picture">
-                            <img src="~/UploadedFiles/{{PictureName}}.jpg" />
+                            <img src="/UploadedFiles/{{PictureName}}" />
                         </div>
                         <div>
                             <span class="name">{{UserName}}</span>
@@ -244,7 +245,7 @@
     <script id="commenttemplate" type="text/x-handlebars-template">
         <div class="comment">
             <div class="picture">
-                <img src="~/UploadedFiles/{{PictureName}}.jpg"/>
+                <img src="/UploadedFiles/{{PictureName}}"/>
             </div>
             <div>
                 <span class="name">{{UserName}}</span>
@@ -354,7 +355,7 @@
 <script id="commenttemplate" type="text/x-handlebars-template">
     <div class="comment">
         <div class="picture">
-            <img src="~/UploadedFiles/{{PictureName}}" />
+            <img src="/UploadedFiles/{{PictureName}}" />
         </div>
         <div>
             <span class="name">{{UserName}}</span>
@@ -376,7 +377,7 @@
     {{#each data}}
     <div class="item" pid="{{ProductID}}">
 
-        <img src="~/UploadedFiles/{{PictureName}}" style="width:100px;height:100px;" />
+        <img src="/UploadedFiles/{{PictureName}}" style="width:100px;height:100px;" />
 
         <div style="float:left">
             Product Id: {{ProductID}} <br />
@@ -403,7 +404,7 @@
             {{#each Comments}}
             <div class="comment" id="@EAD_Project.Security.SessionManager.User.UserID">
                 <div class="picture">
-                    <img src="~/UploadedFiles/{{User.PictureName}}" />
+                    <img src="/UploadedFiles/{{User.PictureName}}" />
                 </div>
                 <div>
                     <span class="name">{{UserName}}</span>
@@ -429,7 +430,7 @@
 <script id="commenttemplate" type="text/x-handlebars-template">
     <div class="comment">
         <div class="picture">
-            <img src="~/UploadedFiles/{{PictureName}}" />
+            <img src="/UploadedFiles/{{PictureName}}" />
         </div>
         <div>
             <span class="name">{{UserName}}</span>
