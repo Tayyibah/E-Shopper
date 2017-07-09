@@ -28,7 +28,7 @@ MyApp = (function () {
 
         var settings = {
             type: "POST",
-            url: window.BasePath + '/Home/SaveUsers',
+            url: 'http://httpbsef14a011apphbcom-3.apphb.com/Home/SaveUsers',
             contentType: false,
             processData: false,
             data: data,
