@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/Layout2.cshtml";
+}
+        <div class="center">
+    <div class="container">
+        <div class="row">
+            <!-- BEGIN site-->
+            <div class="site site--main">
+                <header class="site__header">
+                    <h1 class="site__title">About Us</h1>
+                </header>
+                <div class="site__main">
+                    <div class="widget js-widget widget--main widget--no-margin">
+                        <div class="widget__content">
+                            <article class="article article--list article--details">
+                                <div class="article__body">
+                                    <p><strong>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</strong></p>
+                                    <p>
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                                    </p><img class="col-sm-3" src="~/Content/images/blog/man-four.jpg" alt="">
+                                    <p>
+                                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+                                        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+                                    </p>
+                                    <blockquote>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</blockquote>
+                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                                    <ul>
+                                        <li>Listing</li>
+                                        <li>market reports</li>
+                                        <li>Inventory</li>
+                                    </ul>
+                                    <p><i>&ldquo;High-tech professionals love these homes,&rdquo; he noted. &ldquo;We&rsquo;ve seen a resurgence in Eichler interest over the past five years, and the market for these homes has really heightened in the last couple of years.heightened in the last couple of years.&rdquo;</i></p>
+                                    <p>Extensively remodeled inside and out over the past couple of years, the home&rsquo;s current owners thoughtfully and faithfully documented all of the updates they&rsquo;ve made.</p>
+
+                                </div>
+                                <div class="article__footer">
+                                    <div class="social social--article"><span>Share this post:</span><a href="#" class="social__item"><i class="fa fa-facebook"></i></a><a href="#" class="social__item"><i class="fa fa-twitter"></i></a><a href="#" class="social__item"><i class="fa fa-google-plus"></i></a></div>
+                                </div>
+
+
+
+
+
+                                <div class="widget__header">
+                                    <h2 class="widget__title">Feedback</h2>
+                                </div>
+                                <div class="col-sm-6">
+
+
+
+
+
+                                    <form action="feedBackServlet" method="post" class="form form--flex form--footer js-parsley">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label for="in-email" class="sr-only control-label">E-mail</label>
+                                                <input id="in-email" type="email" name="email" placeholder="E-mail" required data-parsley-trigger="change" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="in-message" class="sr-only control-label">Message for Us</label>
+                                                <textarea id="in-message" name="message" placeholder="Message for Us" required data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-validation-threshold="10" data-parsley-minlength-message="You need to enter at least a 20 caracters long comment.." class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <button type="submit" class="form__submit">Send</button>
+                                        </div>
+                                    </form>
+
+
+
+                                    <section class="address address--footer">
+                                        <h2 class="widget__title">Contact</h2>
+                                        <h4 class="address__headline">Our office</h4>
+                                        <address class="address__main">
+                                            <span>1950 G11, Islamabad, Punjab, Pakistan</span><span>08 - 17 mon-fr</span><a href="tel:+442240052225">+1 202 555 0135</a><a href="tel:+442240052225">+1 202 555 0135</a><span>Fax: +1 202 555 0135</span><a href="mailto:hello@example.com">hello@example.com</a>
+                                        </address>
+                                    </section>
+
+
+                                </div>
+                               
+                                <!-- end of block .address-->
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                <!-- END site-->
+            </div>
+            <!-- BEGIN SIDEBAR--><!-- END SIDEBAR-->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>        
+  

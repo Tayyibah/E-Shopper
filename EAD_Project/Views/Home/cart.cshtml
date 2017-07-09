@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts {
+    <script src="~/Scripts/handlebars.js"></script>
+    <script src="~/Scripts/GetProductForSell.js"></script>
+    <script>
+
+        $(function () {
+            MyApp.Main();
+        });
+
+
+    </script>
+}
+
+<div id="tblBody">
+    <input type="hidden" name="pid" id="pid" value="@(EAD_Project.Security.SessionManager.User.UserID)" />
+</div>
+
+<script id="listtemplate" type="text/x-handlebars-template">
+    {{#each data}}
+    <div class="item" pid="{{ProductID}}" uid="{{User.UserID}}">
+        @*<div class="col-sm-6">
+            <img src="~/UploadedFiles/{{Products.PictureName}}" class="girl img-responsive" alt="" />
+        </div>*@
+        <div class="col-sm-6">
+            <img src="/UploadedFiles/{{Products.PictureName}}"  class="girl img-responsive" alt="" />
+            <img src="/UploadedFiles/{{Users.PictureName}}" style="width:20px;height:20px;" />
+        Customer id: {{Users.UserID}}<br />
+                Customer Name: {{Users.Name}}<br /><br />
+
+            
+                Product Id: {{Products.ProductID}} <br />
+                Name: {{Products.Name}} <br />
+                Price: {{Products.Price}} <br />
+                Created On {{Products.CreatedOn}} <b>By</b> {{Products.CreatedBy}}<br />
+            </div>
+        </div>
+    @*<br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />*@
+    @*<div class="commentarea">
+   
+    <textarea class="txtComment" rows="1" cols="50"></textarea>
+</div>*@
+    
+        {{/each}}
+</script>

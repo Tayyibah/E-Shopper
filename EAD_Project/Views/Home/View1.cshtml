@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "user_cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts {
+    <script src="~/Scripts/handlebars.js"></script>
+    <script src="~/Scripts/GetProductsByUserid.js"></script>
+    <script>
+
+        $(function () {
+            MyApp.Main();
+        });
+
+
+    </script>
+
+    @*<script>
+
+        $(function () {
+                   $("#btnLogin").click(function () {
+
+                       var pid = $("#pid").val();
+                   var d = { "pid": pid };
+
+                       var settings = {
+                           type : "POST",
+                           dataType: "json",
+                           url: "/Product2/GetProductByUserId",
+                           data: d,
+                           success: function (resp) {
+                               if (resp.valid == true) {
+                                   location.href = resp.urlToRedirect;
+                               }
+                               else {
+                                   alert("Invalid Login/Password");
+                               }
+                           },
+                           error: function (e) {
+                               alert("error");
+                           }
+                       };
+
+                       return false;
+                   });
+               });
+           </script>*@
+}
+
+<div id="tblBody">
+    <input type="hidden" name="pid" id="pid" value="@(EAD_Project.Security.SessionManager.User.UserID)" />
+</div>
+@*<form action="/Product2/GetProductByUserId"  method="post">*@
+<script id="listtemplate" type="text/x-handlebars-template">
+    {{#each data}}
+    <div class="prodbox" @*name="pid" id="pid"value="@(EAD_Project.Security.SessionManager.User.UserID)"*@>
+        <div style="float:left">
+            <img src="/UploadedFiles/{{PictureName}}" style="width:100px;height:100px;" />
+        </div>
+        <div style="float:left">
+            Product Id: {{ProductID}} <br />
+            Name: {{Name}} <br />
+            Price: {{Price}} <br />
+            Created On {{CreatedOn}} <b>By</b> {{CreatedBy}}
+        </div><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    </div>
+    {{/each}}
+</script>
+@*<button type="submit" value="Click TO See Ur Cart" id="btnLogin" class="btn btn-default">Click TO See Ur Cart</button>*@
+@*</form>*@

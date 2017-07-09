@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "user_cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts {
+    <script src="~/Scripts/handlebars.js"></script>
+    <script src="~/Scripts/GetuSERcART.js"></script>
+    <script>
+
+        $(function () {
+            MyApp.Main();
+        });
+
+
+    </script>
+}
+
+<div id="tblBody">
+</div>
+
+<script id="listtemplate" type="text/x-handlebars-template">
+    {{#each data}}
+    <div class="prodbox" pid="{{UserID}}">
+        <div style="float:left">
+            <img src="/UploadedFiles/{{PictureName}}" style="width:100px;height:100px;" />
+        </div>
+        <div style="float:left">
+            User Id: {{Users.UserID}}
+            <img src="/UploadedFiles/{{Users.PictureName}}" style="width:20px;height:20px;" />
+            @*{{Users.PictureName}}*@
+            Name: {{Users.Name}}<br />
+
+            Product Id: {{Products.ProductID}} <br />
+            Name: {{Products.Name}} <br />
+            Price: {{Products.Price}} <br />
+            Created On {{Products.CreatedOn}} <b>By</b> {{Products.CreatedBy}}
+        </div><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    </div>
+    {{/each}}
+</script>

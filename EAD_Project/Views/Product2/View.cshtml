@@ -1,0 +1,209 @@
+﻿@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts {
+    <script src="~/Scripts/handlebars.js"></script>
+    <script src="~/Scripts/myapp.js"></script>
+    <script>
+
+        $(function () {
+            MyApp.Main();
+        });
+
+
+    </script>
+    <script>
+        $(function () {
+            $("#addToCart").click(function () {
+                var Products = {
+                    "UserID": $("#UserID").val(),
+                    "ProductID": $("#ProductID").val()
+                    //PictureName = SessionManager.User.PictureName
+                };
+                var settings = {
+                    type : "POST",
+                    dataType: "json",
+                    url: "/Product2/addToCart",
+                    data: Products,//JSON.stringify(Products)
+                    success: function (resp) {
+                        if (resp.valid == true) {
+                            alert("product iz added to ur cart :)");
+                        }
+                        else {
+                            alert("Invalid Login/Password");
+                        }
+                    },
+                    error: function (e) {
+                        alert("error");
+                    }
+                };
+
+                $.ajax(settings);
+
+                return false;
+            });
+        });
+    </script>
+}
+<body>
+    @if (EAD_Project.Security.SessionManager.User.IsAdmin)
+    {
+        <h1><span class="item">Add </span>-Products </h1>
+        <div>
+            <img src="" style="width:100px;height:100px;display:none" id="prodimg" /> <br />
+            <input type="hidden" name="ProductID" id="txtProductID" value="0" />
+            <input type="hidden" name="PictureName" id="txtPictureName" />
+            <h2>Name<input type="text" name="Name" id="txtName" class="login-form" /> <br /></h2>
+            <h2>Price<input type="text" name="Price" id="txtPrice" class="login-form" /> <br /></h2>
+            Image<h2><input type="file" name="Image" id="myfile" class="login-form" /> <br /></h2>
+
+            <input type="submit" value="Save" id="btnSave" class="btn btn-default" />
+            <input type="button" id="btnClear" value="Clear" class="btn btn-default" />
+        </div>
+
+    }
+    <div id="tblBody">
+    </div>
+    <div id="emailpopup" class="modalpopup">
+        <span id="popupname"></span>
+        <button id="btnSend">Email</button>
+        <button id="btnClose">Close</button>
+    </div>
+
+    @*<script id="listtemplate" type="text/x-handlebars-template">
+            {{#each data}}
+            <tr pid="{{ProductID}}">
+                <td>{{Name}}</td>
+                <td>{{Price}}</td>
+                <td><img src="/UploadedFiles/{{PictureName}}" style="width:100px;height:100px;" /></td>
+                @if (WebPrac.Security.SessionManager.User.IsAdmin)
+                {
+                    <td><a href="#" class="editprod">Edit</a></td>
+                    <td><a href="#" class="deleteprod">Delete</a></td>
+                    <td><a href="#" class="emailprod">Email</a></td>
+                }
+            </tr>
+            {{/each}}
+        </script>*@
+    <script id="listtemplate" type="text/x-handlebars-template">
+        {{#each data}}
+        <div class="item" pid="{{ProductID}}">
+            <div class="col-sm-6">
+                <h1><span>Product </span>-{{Name}}</h1>
+
+                <h2>Price:{{Price}} <br /></h2> {{CreatedOn}}<br />
+
+                <p>E-SHOPPER is an online shopping centre where u will find all ur desires in less cost .So buy n sign up :)</p>
+
+                <form action="/Product2/addToCart" @*id="login-form" class="login-form row" name="login_form"*@ method="post">
+                    <input type="hidden" name="ProductID" id="{{ProductID}}" value="{{ProductID}}" />
+                    <input type="hidden" name="UserID" id="@EAD_Project.Security.SessionManager.User.UserID" value="@EAD_Project.Security.SessionManager.User.UserID" />
+                    <button type="submit" onclick="addToCart" id="addToCart" value="Get it now" class="btn btn-default get">Add To Cart</button>
+                </form>
+
+
+            </div>
+            <div class="col-sm-6">
+                <img src="/UploadedFiles/{{PictureName}}" class="girl img-responsive" alt="" />
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        @*<div class="prodbox" pid="{{ProductID}}">
+            <div style="float:left">
+                <img src="/UploadedFiles/{{PictureName}}" style="width:100px;height:100px;" />
+            </div>
+            <div style="float:left">
+                Product Id: {{ProductID}} <br />
+                Name: {{Name}} <br />
+                Price: {{Price}} <br />
+                Created On {{CreatedOn}} <b>By</b> {{CreatedBy}}
+            </div>*@
+        <div style="clear:both">
+            @if (EAD_Project.Security.SessionManager.User.IsAdmin)
+            {
+                @*<button type="submit" onclick="addToCart" id="addToCart" value="Get it now" class="btn btn-default get">Add To Cart</button>*@
+                <a href="/Product/Edit/{{ProductID}}" class="btn btn-default" @*class="btn btn-default get"*@>Edit</a>
+                <a href="/Product/Delete/{{ProductID}}" class="btn btn-default" @*class="btn btn-default get"*@>Delete</a>
+                @*<input type="submit" value="Edit" class="editbutton" pid="{{ProductID}}" />*@
+            }
+        </div>
+
+        <div class="commentarea">
+            <br /><br /><br />
+            <button id="addcomment" value="Add" style="color:orangered" class="addcomment">Add Comment</button>
+            <textarea class="txtComment" rows="1" cols="50"></textarea>
+        </div>
+
+        <br />
+        <div class="comments">
+            {{#each Comments}}
+            <div class="comment">
+                <div class="picture">
+                    <img src='/UploadedFiles/{{PictureName}}' />
+                </div>
+                <div>
+                    <span class="name">{{UserName}}</span>
+                    <span class="comment-text"> {{CommentText}}</span> <br />
+                    <span class="comment-text commenton">{{CommentOn}}</span>
+                </div>
+            </div>
+            <br />
+            <div style="clear:both"></div>
+
+
+
+            {{/each}}
+        </div>
+
+        @*<form action="/Product2/addToCart" method="post">
+                <input type="hidden" name="ProductID" id="{{ProductID}}" value="{{ProductID}}" />
+                <input type="hidden" name="UserID" id="@EAD_Project.Security.SessionManager.User.UserID" value="@EAD_Project.Security.SessionManager.User.UserID" />
+                <button type="submit" onclick="addToCart" id="addToCart" value="Add To Cart" class="btn btn-default">Add To Cart</button>
+            </form>*@
+
+
+        @*<form action="/Product2/addToCart" method="post">
+                <input type="text" id="txtLogin" name="name" placeholder="Name" />
+                <input type="password" id="txtPassword" name="password" placeholder="password" />
+
+                <button type="submit" value="addToCart" id="addToCart" class="btn btn-default">Add To Cart</button>
+            </form>
+        *@
+
+        {{/each}}
+        @*</script>
+            <script id="commenttemplate" type="text/x-handlebars-template">
+                <div class="comment">
+                    <div class="picture">
+                        <img src='/UploadedFiles/{{PictureName}}' />
+                    </div>
+                    <div>
+                        <span class="name">{{UserName}}</span>
+                        <span class="comment-text"> {{CommentText}}</span> <br />
+                        <span class="comment-text commenton">{{CommentOn}}</span>
+                    </div>
+                </div>
+                <br />
+                <div style="clear:both"></div>
+            </script>*@
+    </script>
+    <script id="commenttemplate" type="text/x-handlebars-template">
+        <div class="comment">
+            <div class="picture">
+                <img src='/UploadedFiles/{{PictureName}}' />
+            </div>
+            <div>
+                <span class="name">{{UserName}}</span>
+                <span class="comment-text"> {{CommentText}}</span> <br />
+                <span class="comment-text commenton">{{CommentOn}}</span>
+            </div>
+        </div>
+        <br />
+        <div style="clear:both"></div>
+    </script>
+
+</body>

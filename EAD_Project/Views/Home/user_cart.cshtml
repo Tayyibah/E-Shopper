@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "user_cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts {
+    <script src="~/Scripts/handlebars.js"></script>
+    <script src="~/Scripts/GetProductsByUserid.js"></script>
+    <script>
+
+        $(function () {
+            MyApp.Main();
+        });
+
+
+    </script>
+
+    @*<script>
+
+ $(function () {
+            $("#btnLogin").click(function () {
+
+                var pid = $("#pid").val();
+            var d = { "pid": pid };
+
+                var settings = {
+                    type : "POST",
+                    dataType: "json",
+                    url: "/Product2/GetProductByUserId",
+                    data: d,
+                    success: function (resp) {
+                        if (resp.valid == true) {
+                            location.href = resp.urlToRedirect;
+                        }
+                        else {
+                            alert("Invalid Login/Password");
+                        }
+                    },
+                    error: function (e) {
+                        alert("error");
+                    }
+                };
+
+                return false;
+            });
+        });
+    </script>*@
+}
+
+<div id="tblBody">
+    <input type="hidden" name="pid" id="pid" value="@(EAD_Project.Security.SessionManager.User.UserID)" />
+</div>
+@*<form action="/Product2/GetProductByUserId"  method="post">*@
+    <script id="listtemplate" type="text/x-handlebars-template">
+        @*@{
+
+        int myInt = 0;
+
+    }*@
+    {{#each data}}
+    <div class="item" @*myInt=@myInt+"{{Price}}"*@ pid="{{ProductID}}" uid="{{User.UserID}}">
+        <div class="col-sm-6">
+            @*@myInt=myInt*@
+            <h1><span>Product </span>-{{Name}}</h1>
+
+            <h2>Price:{{Price}} <br /></h2> {{CreatedOn}}<br />
+            @*@foreach(var x in EAD_Project.Security.SessionManager.)
+    {
+                    total = total+ x.Price;
+                }        @ViewBag.total;*@ 
+                            
+        @*@{
+
+        myInt =;
+
+    }*@
+            <p>E-SHOPPER is an online shopping centre where u will find all ur desires in less cost .So buy n sign up :)</p>
+            <a href="/Product/DeleteProductFromCart/{{ProductID}}" class="btn btn-default" @*class="btn btn-default get"*@>Remove From Cart</a>
+
+        </div>
+        <div class="col-sm-6">
+            <img src="/UploadedFiles/{{PictureName}}" class="girl img-responsive" alt="" />
+        </div>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            </div><br />
+<br />
+<div class="commentarea">
+        <textarea class="txtComment" rows="1" cols="50"></textarea>
+    </div>
+            {{/each}}
+        
+     <h1><span>Total </span>-@ViewBag.total;</h1>
+             @* <h1><span>Total </span>-@ViewData["total"];</h1>
+          <h1><span>Total </span>-myInt@ViewBag.total;</h1>
+        <h1><span>Total </span>- @EAD_Project.Security.SessionManager.Product
+                 </h1>*@
+        </ script >
+        @*<button type="submit" value="Click TO See Ur Cart" id="btnLogin" class="btn btn-default">Click TO See Ur Cart</button>*@
+@*</form>*@

@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "LoginAndSignup";
+    Layout = "~/Views/Shared/Page.cshtml";
+}
+<head>
+
+    @section scripts {
+        <script src="~/Scripts/handlebars.js"></script>
+        <script src="~/Scripts/app3.js"></script>
+    <script>
+
+        $(function () {
+            MyApp.Main();
+        });
+
+
+    </script>
+    }
+</head>
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-1">
+            <div class="login-form">
+                <!--login form-->
+                <h2>Login to your account</h2>
+                <form action="/Home/Login" @*id="login-form" class="login-form row" name="login_form"*@ method="post">
+                    <input type="text" id="txtLogin" name="name" placeholder="Name" />
+                    <input type="password" id="txtPassword" name="password" placeholder="password" />
+                    <span>
+                        <input type="checkbox" name="checkbox_name" class="checkbox">
+                        Keep me signed in
+                    </span>
+                    <button type="submit" value="Login" id="btnLogin" class="btn btn-default">Login</button>
+                </form>
+
+                @* @Html.ActionLink("Forgot Password", "forgotPassword")*@
+                @*<div>
+                        Login: <input type="text" id="txtLogin" /> <br />
+                        Password:<input type="password" id="txtPassword" /> <br />
+                        <input type="submit" />
+                    </div>*@
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <h2 class="or">OR</h2>
+        </div>
+            <!--sign up form-->
+            @*<h2>New User Signup!</h2>
+            <input type="text" name="name1" id="name1" placeholder="Name" />
+            <input type="email" name="email" id="email" placeholder="Email Address" />
+            <input type="text" name="Designation" id="Designation" placeholder="Designation" />
+            <input type="hidden" name="ProductID" id="txtProductID" value="0" />
+            <input type="hidden" name="PictureName" id="txtPictureName" />
+            <input type="password" name="password1" id="password1" placeholder="Password" />
+            <input type="password" name="cn_password" id="cn_password" placeholder="Confirm Password" />
+            Image<h2><input type="file" name="Image" id="myfile" class="login-form" /> <br /></h2>
+            <input type="button" value="Save" id="btnSave1" name="btnSave1"  class="btn btn-default" />*@
+            
+            <div class="col-sm-4">
+                <div class="signup-form">
+                    <!--sign up form-->
+                    <h2>New User Signup!</h2>
+                    <form>
+                        <input type="text" name="name1" id="name1" placeholder="Name" />
+                        <input type="email" name="email" id="email" placeholder="Email Address" />
+                        <input type="text" name="Designation" id="Designation" placeholder="Designation" />
+                        <input type="hidden" name="ProductID" id="txtProductID" value="0" />
+                        <input type="hidden" name="PictureName" id="txtPictureName" value="" />
+                        <input type="password" name="password1" id="password1" placeholder="Password" />
+                        <input type="password" name="cn_password" id="cn_password" placeholder="Confirm Password" />
+                        Image<h2><input type="file" name="Image" id="myfile" class="login-form" /> <br /></h2>
+                    <button type="button" value="Save" id="btnSave1"class="btn btn-default">Signup</button>
+                    @*<input type="button" value="Save" id="btnSave1"class="btn btn-default" />*@
+                    </form>
+                </div><!--/sign up form-->
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="61b3885d4a294c4f82f7e7ae2b1d1e1e" Name="Diagram1">
+        <EntityTypeShape EntityType="Shopping_DBModel2.addToCart" Width="1.5" PointX="0.625" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.Bill_To" Width="1.5" PointX="4.625" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.Comment" Width="1.5" PointX="6.125" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.MappingsTable" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.Product" Width="1.5" PointX="4.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.Shopper_Information" Width="1.5" PointX="7.625" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.UsersTable" Width="1.5" PointX="2.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.User" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="Shopping_DBModel2.FK_UsersTable_MappingsTable" ManuallyRouted="false" />
+        <AssociationConnector Association="Shopping_DBModel2.FK_addToCart_Products" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

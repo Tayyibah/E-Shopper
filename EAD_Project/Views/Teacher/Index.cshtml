@@ -1,0 +1,27 @@
+﻿@model IEnumerable<DB.Teacher> 
+@{
+    Layout = @Layout;
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<p>@Html.ActionLink("Create teacher","Create")</p>
+<tr>
+    <th>Teacher Name</th>
+    <th>Teacher subject</th>
+    <th></th>
+</tr>
+    <table>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(m => item.TeacherName)</td>
+                        <td>@Html.DisplayFor(m => item.tEACHERsUBJECT)</td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { item.TeacherID })|
+                            @Html.ActionLink("Deleter", "Deleter", new { item.TeacherID })|
+                            @Html.ActionLink("Details", "Details", new { item.TeacherID })
+                        </td>
+</tr>
+                }
+</table>

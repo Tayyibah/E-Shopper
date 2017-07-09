@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "login";
+    Layout = "~/Views/Shared/Layout2.cshtml";
+}
+
+    <script src="~/Scripts/handlebars.js"></script>
+    <script src="~/Scripts/myapp1.js"></script>
+    <script>
+
+        $(function () {
+            MyApp.Main();
+        });
+
+
+    </script>
+<script>
+        $(function () {
+            $("#btnLogin").click(function () {
+
+                var login = $("#txtLogin").val();
+                var pass = $("#txtPassword").val();
+
+                var d = { "login": login, "password": pass };
+
+                var settings = {
+                    type : "POST",
+                    dataType: "json",
+                    url: "/User/ValidateUser",
+                    data: d,
+                    success: function (resp) {
+                        if (resp.valid == true) {
+                            location.href = resp.urlToRedirect;
+                        }
+                        else {
+                            alert("Invalid Login/Password");
+                        }
+                    },
+                    error: function (e) {
+                        alert("error");
+                    }
+                };
+
+                $.ajax(settings);
+
+                return false;
+            });
+        });
+</script>
+
+
+<body>
+
+    <section id="form">
+        <!--form-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-1">
+                    <div class="login-form">
+                        <!--login form-->
+                        <h2>Login to your account</h2>
+                        <form action="/Home/Login" @*id="login-form" class="login-form row" name="login_form"*@ method="post">
+                            <input type="text" id="txtLogin" name="name" placeholder="Name" />
+                            <input type="password" id="txtPassword" name="password" placeholder="password" />
+                            <span>
+                                <input type="checkbox" name="checkbox_name" class="checkbox">
+                                Keep me signed in
+                            </span>
+                            <button type="submit" value="Login" id="btnLogin" class="btn btn-default">Login</button>
+                        </form>
+                        @*<div>
+                                Login: <input type="text" id="txtLogin" /> <br />
+                                Password:<input type="password" id="txtPassword" /> <br />
+                                <input type="submit" />
+                            </div>*@
+                    </div>
+                </div>
+                <div class="col-sm-1">
+                    <h2 class="or">OR</h2>
+                </div>
+                <div class="col-sm-4">
+                    <div class="signup-form">
+                        <!--sign up form-->
+                        <h2>New User Signup!</h2>
+                        @*<form action="/Home/Save" id="Signup-form" class="Signup-form row" name="Signup" method="post">*@
+                        <input type="text" name="name" placeholder="Name" />
+                        <input type="email" name="email" placeholder="Email Address" />
+                        <input type="text" name="Designation" placeholder="Designation" />
+                        <input type="password" name="password" placeholder="Password" />
+                        Image<h2><input type="file" name="Image" id="myfile" class="login-form" /> <br /></h2>
+
+                        <input type="submit" value="Save" id="btnSave" class="btn btn-default" />
+                        @*</form>*@
+                    </div><!--/sign up form-->
+                </div>
+            </div>
+        </div>
+    </section><!--/form-->
+
+</body>

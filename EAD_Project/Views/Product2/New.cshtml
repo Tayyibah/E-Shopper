@@ -1,0 +1,442 @@
+﻿
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts {
+    <script src="~/Scripts/handlebars.js"></script>
+    <script src="~/Scripts/myapp.js"></script>
+    <script>
+
+        $(function () {
+            MyApp.Main();
+        });
+
+
+    </script>
+    @*<script>
+        $(function () {
+            $("#addToCart").click(function () {
+                var Products = {
+                    "UserID": $("#UserID").val(),
+                    "ProductID": $("#ProductID").val()
+                };
+                var settings = {
+                    type : "POST",
+                    dataType: "json",
+                    url: "/User/addToCart",
+                    data: JSON.stringify(Products),
+                    success: function (resp) {
+                        if (resp.valid == true) {
+                            alert("product iz added to ur cart :)");
+                        }
+                        else {
+                            alert("Invalid Login/Password");
+                        }
+                    },
+                    error: function (e) {
+                        alert("~/Home/Error404");
+                    }
+                };
+
+                $.ajax(settings);
+
+                return false;
+            });
+        });
+        $("#btnSave").click(function () {
+
+            var data = new FormData();
+
+            var id = $("#txtProductID").val();
+            var name = $("#txtName").val();
+            var price = $("#txtPrice").val();
+            var oldPicName = $("#txtPictureName").val();
+
+            data.append("ProductID", id);
+            data.append("Name", name);
+            data.append("Price", price);
+            data.append("PictureName", oldPicName);
+
+
+            var files = $("#myfile").get(0).files;
+            if (files.length > 0) {
+                data.append("Image", files[0]);
+            }
+
+            var settings = {
+                type: "POST",
+                url: window.BasePath + 'Product2/Save',
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (r) {
+                    console.log(r);
+
+                    var obj = {};
+                    obj.data = [];
+                    obj.data.push({ ProductID: r.ProductID, Name: name, Price: price, PictureName: r.PictureName });
+
+                    var source = $("#listtemplate").html();
+                    var template = Handlebars.compile(source);
+
+                    var html = template(obj);
+
+                    if (id > 0) {
+                        $("#tblBody tr[pid=" + id + "]").replaceWith(html);
+                    }
+                    else {
+                        $("#tblBody").prepend(html);
+                    }
+
+                    BindEvents();
+
+                    Clear();
+
+                    alert("record is saved");
+                },
+                error: function () {
+                    alert("~/Home/Error404");
+                }
+            };
+
+            $.ajax(settings);
+        
+            return false;
+        });
+        
+    </script>*@
+}
+<body>
+    @if (EAD_Project.Security.SessionManager.User.IsAdmin)
+    {
+        <h1><span class="item">Add </span>-Products </h1>
+        <div>
+            <img src="" style="width:100px;height:100px;display:none" id="prodimg" /> <br />
+            <input type="hidden" name="ProductID" id="txtProductID" value="0" />
+            <input type="hidden" name="PictureName" id="txtPictureName" />
+            <h2>Name<input type="text" name="Name" id="txtName" class="login-form" /> <br /></h2>
+            <h2>Price<input type="text" name="Price" id="txtPrice" class="login-form" /> <br /></h2>
+            Image<h2><input type="file" name="Image" id="myfile" class="login-form" /> <br /></h2>
+
+            <input type="button"  value="Save" id="btnSave1"  class="btn btn-default" />
+            <input type="button" id="btnClear" value="Clear" class="btn btn-default" />
+        </div>
+    }
+    <div id="tblBody">
+    </div>
+    <div id="emailpopup" class="modalpopup">
+        <span id="popupname"></span>
+        <button id="btnSend">Email</button>
+        <button id="btnClose">Close</button>
+    </div>
+
+    @*<script id="listtemplate" type="text/x-handlebars-template">
+            {{#each data}}
+            <tr pid="{{ProductID}}">
+                <td>{{Name}}</td>
+                <td>{{Price}}</td>
+                <td><img src="/UploadedFiles/{{PictureName}}" style="width:100px;height:100px;" /></td>
+                @if (WebPrac.Security.SessionManager.User.IsAdmin)
+                {
+                    <td><a href="#" class="editprod">Edit</a></td>
+                    <td><a href="#" class="deleteprod">Delete</a></td>
+                    <td><a href="#" class="emailprod">Email</a></td>
+                }
+            </tr>
+            {{/each}}
+        </script>*@
+    <script id="listtemplate" type="text/x-handlebars-template">
+        {{#each data}}
+        @*<div class="prodbox" pid="{{ProductID}}">*@
+        <div class="item" pid="{{ProductID}}">
+            <div class="col-sm-6">
+                <h1><span>Product </span>-{{Name}}</h1>
+
+                <h2>Price:{{Price}} <br /></h2> {{CreatedOn}}<br />
+
+                <p>E-SHOPPER is an online shopping centre where u will find all ur desires in less cost .So buy n sign up :)</p>
+
+@if (!EAD_Project.Security.SessionManager.User.IsAdmin)
+{
+                <form action="/Product2/addToCart" @*id="login-form" class="login-form row" name="login_form"*@ method="post">
+                    <input type="hidden" name="ProductID" id="{{ProductID}}" value="{{ProductID}}" />
+                    <input type="hidden" name="UserID" id="@EAD_Project.Security.SessionManager.User.UserID" value="@EAD_Project.Security.SessionManager.User.UserID" />
+                    <button type="submit" onclick="addToCart" id="addToCart" value="Get it now" class="btn btn-default get">Add To Cart</button>
+                </form>
+}
+
+            </div>
+            <div class="col-sm-6">
+                <img src="/UploadedFiles/{{PictureName}}" class="girl img-responsive" alt="" />
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            @*<div class="prodbox" pid="{{ProductID}}">
+                <div style="float:left">
+                    <img src="/UploadedFiles/{{PictureName}}" style="width:100px;height:100px;" />
+                </div>
+                <div style="float:left">
+                    Product Id: {{ProductID}} <br />
+                    Name: {{Name}} <br />
+                    Price: {{Price}} <br />
+                    Created On {{CreatedOn}} <b>By</b> {{CreatedBy}}
+                </div>*@
+            <div style="clear:both">
+                @if (EAD_Project.Security.SessionManager.User.IsAdmin)
+                {
+                    @*<button type="submit" onclick="addToCart" id="addToCart" value="Get it now" class="btn btn-default get">Add To Cart</button>*@
+                    <a href="/Product/Edit/{{ProductID}}" class="btn btn-default" @*class="btn btn-default get"*@>Edit</a>
+                        <a href="/Product/Delete/{{ProductID}}" class="btn btn-default" @*class="btn btn-default get"*@>Delete</a>
+                        @*<input type="submit" value="Edit" class="editbutton" pid="{{ProductID}}" />*@
+                    
+                }
+            </div>
+
+            <p><br /><br /></p>
+            <div style="clear:both">
+                <input type="hidden" name="nothing" value="{{ProductID}}" />
+            </div>
+                <div class="commentarea">
+                    <textarea class="txtComment" rows="1" cols="50"></textarea>
+                    <button id="addcomment" value="Add" class="addcomment">Add Comment</button>
+                </div>
+                <br />
+                <div class="comments">
+                    {{#each Comments}}
+                    <div class="comment">
+                        <div class="picture">
+                            <img src="/UploadedFiles/{{PictureName}}" />
+                        </div>
+                        <div>
+                            <span class="name">{{UserName}}</span>
+                            <span class="comment-text"> {{CommentText}}</span> <br />
+                            <span class="comment-text commenton">{{CommentOn}}</span>
+                        </div>
+                    </div>
+                    <br />
+                    @*<div style="clear:both"></div>*@
+                    {{/each}}
+
+                </div>
+            </div>
+        @*</div>*@
+
+        @*<form action="/Product2/addToCart" method="post">
+            <input type="hidden" name="ProductID" id="{{ProductID}}" value="{{ProductID}}" />
+            <input type="hidden" name="UserID" id="@EAD_Project.Security.SessionManager.User.UserID" value="@EAD_Project.Security.SessionManager.User.UserID" />
+            <button type="submit" onclick="addToCart" id="addToCart" value="Add To Cart" class="btn btn-default">Add To Cart</button>
+        </form>*@
+
+
+        @*<form action="/Product2/addToCart" method="post">
+                <input type="text" id="txtLogin" name="name" placeholder="Name" />
+                <input type="password" id="txtPassword" name="password" placeholder="password" />
+
+                <button type="submit" value="addToCart" id="addToCart" class="btn btn-default">Add To Cart</button>
+            </form>
+        *@
+
+        {{/each}}
+    </script>
+    <script id="commenttemplate" type="text/x-handlebars-template">
+        <div class="comment">
+            <div class="picture">
+                <img src="/UploadedFiles/{{PictureName}}"/>
+            </div>
+            <div>
+                <span class="name">{{UserName}}</span>
+                <span class="comment-text"> {{CommentText}}</span> <br />
+                <span class="comment-text commenton">{{CommentOn}}</span>
+            </div>
+        </div>
+        <br />
+        <div style="clear:both"></div>
+    </script>
+    @*<div class="commentarea">
+            <br /><br /><br />
+            <button id="commenttemplate" value="Add" style="color:orangered" class="addcomment">Add Comment</button>
+            <textarea class="txtComment" rows="1" cols="50"></textarea>
+        </div>
+
+        <br />
+        <div class="comments">
+            {{#each Comments}}
+            <div class="comment">
+                <div class="picture">
+                    <img src='/UploadedFiles/{{PictureName}}' />
+                </div>
+                <div>
+                    <span class="name">{{UserName}}</span>
+                    <span class="comment-text"> {{CommentText}}</span> <br />
+                    <span class="comment-text commenton">{{CommentOn}}</span>
+                </div>
+            </div>
+            <br />
+            <div style="clear:both"></div>
+
+
+
+            {{/each}}
+        </div>*@
+    @*<mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmdiv class="commentarea">
+            <textarea class="txtComment" rows="1" cols="50"></textarea>
+            <button id="addcomment" value="Add" class="addcomment">Add Comment</button>
+        </div>
+        <br />
+        <div class="comments">
+            {{#each Comments}}
+            <div class="comment">
+                <div class="picture">
+                    <img src='/UploadedFiles/{{PictureName}}' />
+                </div>
+                <div>
+                    <span class="name">{{UserName}}</span>
+                    <span class="comment-text"> {{CommentText}}</span> <br />
+                    <span class="comment-text commenton">{{CommentOn}}</span>
+                </div>
+            </div>
+            <br />
+            <div style="clear:both"></div>
+            {{/each}}
+        </div>*@
+
+    @*<form action="/Product2/addToCart" method="post">
+            <input type="hidden" name="ProductID" id="{{ProductID}}" value="{{ProductID}}" />
+            <input type="hidden" name="UserID" id="@EAD_Project.Security.SessionManager.User.UserID" value="@EAD_Project.Security.SessionManager.User.UserID" />
+            <button type="submit" onclick="addToCart" id="addToCart" value="Add To Cart" class="btn btn-default">Add To Cart</button>
+        </form>*@
+
+
+    @*<form action="/Product2/addToCart" method="post">
+            <input type="text" id="txtLogin" name="name" placeholder="Name" />
+            <input type="password" id="txtPassword" name="password" placeholder="password" />
+
+            <button type="submit" value="addToCart" id="addToCart" class="btn btn-default">Add To Cart</button>
+        </form>
+    *@
+
+    @* {{/each}}jjjjjjjjjjjjjjjjjjjjjjj
+            </script>
+        <script id="commenttemplate" type="text/x-handlebars-template">
+            <div class="comment">
+                <div class="picture">
+                    <img src='/UploadedFiles/{{PictureName}}' />
+                </div>
+                <div>
+                    <span class="name">{{UserName}}</span>
+                    <span class="comment-text"> {{CommentText}}</span> <br />
+                    <span class="comment-text commenton">{{CommentOn}}</span>
+                </div>
+            </div>
+            <br />
+            <div style="clear:both"></div>
+        </script>
+        </script>kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk*@
+    @*<script id="commenttemplate" type="text/x-handlebars-template">
+            <div class="comment">
+                <div class="picture">
+                    <img src='/UploadedFiles/{{PictureName}}' />
+                </div>
+                <div>
+                    <span class="name">{{UserName}}</span>
+                    <span class="comment-text"> {{CommentText}}</span> <br />
+                    <span class="comment-text commenton">{{CommentOn}}</span>
+                </div>
+            </div>
+            <br />
+            <div style="clear:both"></div>
+        </script>
+    *@
+</body>
+<script id="commenttemplate" type="text/x-handlebars-template">
+    <div class="comment">
+        <div class="picture">
+            <img src="/UploadedFiles/{{PictureName}}" />
+        </div>
+        <div>
+            <span class="name">{{UserName}}</span>
+            <span class="comment-text"> {{CommentText}}</span> <br />
+            <span class="comment-text commenton">{{CommentOn}}</span>
+        </div>
+    </div>
+    <br />
+    <div style="clear:both"></div>
+</script>
+
+
+
+
+
+
+
+<script id="listtemplate" type="text/x-handlebars-template">
+    {{#each data}}
+    <div class="item" pid="{{ProductID}}">
+
+        <img src="/UploadedFiles/{{PictureName}}" style="width:100px;height:100px;" />
+
+        <div style="float:left">
+            Product Id: {{ProductID}} <br />
+            Name: {{Name}} <br />
+            Price: {{Price}} <br />
+            Created On {{CreatedOn}} <b>By</b> {{CreatedBy}}
+        </div>
+        <div style="clear:both">
+            @if (EAD_Project.Security.SessionManager.User.IsAdmin)
+            {
+                <a href="/Product/Edit/{{ProductID}}">Edit</a>
+                <a href="/Product/Delete/{{ProductID}}">Delete</a>
+                <input type="submit" value="Edit" class="editbutton" pid="{{ProductID}}" />
+                <br /><br /><br /><br /><hr>
+            }
+        </div>
+        <br /><br /><br /><br />
+        <div class="commentarea">
+            <textarea class="txtComment" rows="1" cols="50"></textarea>
+            <button id="addcomment" value="Add" class="addcomment">Add Comment</button>
+        </div>
+        <br />
+        <div class="comments">
+            {{#each Comments}}
+            <div class="comment" id="@EAD_Project.Security.SessionManager.User.UserID">
+                <div class="picture">
+                    <img src="/UploadedFiles/{{User.PictureName}}" />
+                </div>
+                <div>
+                    <span class="name">{{UserName}}</span>
+                    <span class="comment-text"> {{CommentText}}</span> <br />
+                    <span class="comment-text commenton">{{CommentOn}}</span>
+                </div>
+            </div>
+            <br />
+            <div style="clear:both"></div>
+            {{/each}}
+        </div>
+    </div>
+
+    @*<form action="/Product2/addToCart" method="post">
+        <input type="hidden" name="ProductID" id="{{ProductID}}" value="{{ProductID}}" />
+        <input type="hidden" name="UserID" id="@EAD_Project.Security.SessionManager.User.UserID" value="@EAD_Project.Security.SessionManager.User.UserID" />
+        <button type="submit" onclick="addToCart" id="addToCart" value="Add To Cart" class="btn btn-default">Add To Cart</button>
+    </form>*@
+
+
+    {{/each}}
+</script>
+<script id="commenttemplate" type="text/x-handlebars-template">
+    <div class="comment">
+        <div class="picture">
+            <img src="/UploadedFiles/{{PictureName}}" />
+        </div>
+        <div>
+            <span class="name">{{UserName}}</span>
+            <span class="comment-text"> {{CommentText}}</span> <br />
+            <span class="comment-text commenton">{{CommentOn}}</span>
+        </div>
+    </div>
+    <br />
+    <div style="clear:both"></div>
+</script>

@@ -1,0 +1,541 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Shopping_DBModel3.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="addToCart">
+          <Key>
+            <PropertyRef Name="cartID" />
+          </Key>
+          <Property Name="cartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="Bill_To">
+          <Key>
+            <PropertyRef Name="BillNo" />
+          </Key>
+          <Property Name="BillNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Display_Name" Type="varchar" MaxLength="50" />
+          <Property Name="User_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="confirm_password" Type="varchar" MaxLength="50" />
+          <Property Name="Company_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
+          <Property Name="First_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Middle_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Last_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Address_1" Type="varchar" MaxLength="50" />
+          <Property Name="Address_2" Type="varchar" MaxLength="50" />
+          <Property Name="Zip" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="Phone1" Type="varchar" MaxLength="50" />
+          <Property Name="Phone2" Type="varchar" MaxLength="50" />
+          <Property Name="Mobile_Phone" Type="varchar" MaxLength="50" />
+          <Property Name="Fax" Type="varchar" MaxLength="50" />
+          <Property Name="message" Type="varchar" MaxLength="50" />
+          <Property Name="Shipping" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Shopping_DB.dbo.cart' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="cart">
+          <Property Name="user_option" Type="varchar" MaxLength="50" />
+          <Property Name="single_fieldCountry" Type="varchar" MaxLength="50" />
+          <Property Name="single_field_Region" Type="varchar" MaxLength="50" />
+          <Property Name="Zip_Code" Type="varchar" MaxLength="50" />
+        </EntityType>-->
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="CommentText" Type="varchar" MaxLength="50" />
+          <Property Name="CommentOn" Type="date" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="PictureName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Shopping_DB.dbo.contact_us' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="contact_us">
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="subject" Type="varchar" MaxLength="50" />
+          <Property Name="message" Type="varchar" MaxLength="50" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Shopping_DB.dbo.login_form' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="login_form">
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="Email_Address" Type="varchar" MaxLength="50" />
+          <Property Name="checkbox_name" Type="bit" />
+        </EntityType>-->
+        <EntityType Name="MappingsTable">
+          <Key>
+            <PropertyRef Name="MappingId" />
+          </Key>
+          <Property Name="MappingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="AddToCart" Type="bit" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Shopping_DB.dbo.product_details' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="product_details">
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="textarea_text" Type="varchar" MaxLength="50" />
+        </EntityType>-->
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Price" Type="int" />
+          <Property Name="PictureName" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="date" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="date" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Shopping_DB.dbo.reply_form' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="reply_form">
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="website" Type="varchar" MaxLength="50" />
+          <Property Name="message" Type="varchar" MaxLength="50" />
+        </EntityType>-->
+        <EntityType Name="Shopper_Information">
+          <Key>
+            <PropertyRef Name="User_Name" />
+          </Key>
+          <Property Name="Display_Name" Type="varchar" MaxLength="50" />
+          <Property Name="User_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="password2" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Shopping_DB.dbo.Signup' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Signup">
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="Designation" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+        </EntityType>-->
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isAdmin" Type="bit" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="PictureName" Type="varchar" MaxLength="20" />
+          <Property Name="Designation" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="UsersTable">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Designation" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="UsersType" Type="int" />
+          <Property Name="MappingId" Type="int" />
+          <Property Name="PictureName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_addToCart_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="addToCart" Type="Self.addToCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="addToCart">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersTable_MappingsTable">
+          <End Role="MappingsTable" Type="Self.MappingsTable" Multiplicity="0..1" />
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MappingsTable">
+              <PropertyRef Name="MappingId" />
+            </Principal>
+            <Dependent Role="UsersTable">
+              <PropertyRef Name="MappingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Shopping_DBModel3StoreContainer">
+          <EntitySet Name="addToCart" EntityType="Self.addToCart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bill_To" EntityType="Self.Bill_To" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MappingsTable" EntityType="Self.MappingsTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shopper_Information" EntityType="Self.Shopper_Information" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersTable" EntityType="Self.UsersTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_addToCart_Products" Association="Self.FK_addToCart_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="addToCart" EntitySet="addToCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersTable_MappingsTable" Association="Self.FK_UsersTable_MappingsTable">
+            <End Role="MappingsTable" EntitySet="MappingsTable" />
+            <End Role="UsersTable" EntitySet="UsersTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Shopping_DBModel3" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="addToCart">
+          <Key>
+            <PropertyRef Name="cartID" />
+          </Key>
+          <Property Name="cartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_addToCart_Products" FromRole="addToCart" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Bill_To">
+          <Key>
+            <PropertyRef Name="BillNo" />
+          </Key>
+          <Property Name="BillNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Display_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="confirm_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Company_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Middle_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address_2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="message" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Shipping" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="CommentText" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CommentOn" Type="DateTime" Precision="0" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PictureName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MappingsTable">
+          <Key>
+            <PropertyRef Name="MappingId" />
+          </Key>
+          <Property Name="MappingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="AddToCart" Type="Boolean" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="UsersTables" Relationship="Self.FK_UsersTable_MappingsTable" FromRole="MappingsTable" ToRole="UsersTable" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="PictureName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="addToCarts" Relationship="Self.FK_addToCart_Products" FromRole="Products" ToRole="addToCart" />
+        </EntityType>
+        <EntityType Name="Shopper_Information">
+          <Key>
+            <PropertyRef Name="User_Name" />
+          </Key>
+          <Property Name="Display_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="PictureName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Designation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UsersTable">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="UsersType" Type="Int32" />
+          <Property Name="MappingId" Type="Int32" />
+          <Property Name="PictureName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MappingsTable" Relationship="Self.FK_UsersTable_MappingsTable" FromRole="UsersTable" ToRole="MappingsTable" />
+        </EntityType>
+        <Association Name="FK_addToCart_Products">
+          <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="addToCart" Type="Self.addToCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="addToCart">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersTable_MappingsTable">
+          <End Role="MappingsTable" Type="Self.MappingsTable" Multiplicity="0..1" />
+          <End Role="UsersTable" Type="Self.UsersTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MappingsTable">
+              <PropertyRef Name="MappingId" />
+            </Principal>
+            <Dependent Role="UsersTable">
+              <PropertyRef Name="MappingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Shopping_DBEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="addToCarts" EntityType="Self.addToCart" />
+          <EntitySet Name="Bill_To" EntityType="Self.Bill_To" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="MappingsTables" EntityType="Self.MappingsTable" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Shopper_Information" EntityType="Self.Shopper_Information" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UsersTables" EntityType="Self.UsersTable" />
+          <AssociationSet Name="FK_addToCart_Products" Association="Self.FK_addToCart_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="addToCart" EntitySet="addToCarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersTable_MappingsTable" Association="Self.FK_UsersTable_MappingsTable">
+            <End Role="MappingsTable" EntitySet="MappingsTables" />
+            <End Role="UsersTable" EntitySet="UsersTables" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Shopping_DBModel3StoreContainer" CdmEntityContainer="Shopping_DBEntities2">
+          <EntitySetMapping Name="addToCarts">
+            <EntityTypeMapping TypeName="Shopping_DBModel3.addToCart">
+              <MappingFragment StoreEntitySet="addToCart">
+                <ScalarProperty Name="cartID" ColumnName="cartID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bill_To">
+            <EntityTypeMapping TypeName="Shopping_DBModel3.Bill_To">
+              <MappingFragment StoreEntitySet="Bill_To">
+                <ScalarProperty Name="BillNo" ColumnName="BillNo" />
+                <ScalarProperty Name="Display_Name" ColumnName="Display_Name" />
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="confirm_password" ColumnName="confirm_password" />
+                <ScalarProperty Name="Company_Name" ColumnName="Company_Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Middle_Name" ColumnName="Middle_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Address_1" ColumnName="Address_1" />
+                <ScalarProperty Name="Address_2" ColumnName="Address_2" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="Mobile_Phone" ColumnName="Mobile_Phone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="Shipping" ColumnName="Shipping" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="Shopping_DBModel3.Comment">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="CommentText" ColumnName="CommentText" />
+                <ScalarProperty Name="CommentOn" ColumnName="CommentOn" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PictureName" ColumnName="PictureName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MappingsTables">
+            <EntityTypeMapping TypeName="Shopping_DBModel3.MappingsTable">
+              <MappingFragment StoreEntitySet="MappingsTable">
+                <ScalarProperty Name="MappingId" ColumnName="MappingId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="AddToCart" ColumnName="AddToCart" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="Shopping_DBModel3.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PictureName" ColumnName="PictureName" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shopper_Information">
+            <EntityTypeMapping TypeName="Shopping_DBModel3.Shopper_Information">
+              <MappingFragment StoreEntitySet="Shopper_Information">
+                <ScalarProperty Name="Display_Name" ColumnName="Display_Name" />
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="password2" ColumnName="password2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Shopping_DBModel3.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Shopping_DBModel3.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="PictureName" ColumnName="PictureName" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersTables">
+            <EntityTypeMapping TypeName="Shopping_DBModel3.UsersTable">
+              <MappingFragment StoreEntitySet="UsersTable">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="UsersType" ColumnName="UsersType" />
+                <ScalarProperty Name="MappingId" ColumnName="MappingId" />
+                <ScalarProperty Name="PictureName" ColumnName="PictureName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

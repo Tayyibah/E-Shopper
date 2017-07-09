@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="34a4a26b9150423ba2ba083038ce4f63" Name="Diagram1">
+        <EntityTypeShape EntityType="Shopping_DBModel2.addToCart" Width="1.5" PointX="3.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.Bill_To" Width="1.5" PointX="8.25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.Comment" Width="1.5" PointX="3.625" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.Product" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.sysdiagram" Width="1.5" PointX="10.125" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.User" Width="1.5" PointX="6.25" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="Shopping_DBModel2.FK_addToCart_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="Shopping_DBModel2.FK_addToCart_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Shopping_DBModel2.FK_Bill_To_Bill_To" ManuallyRouted="false" />
+        <AssociationConnector Association="Shopping_DBModel2.FK_Comments_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="Shopping_DBModel2.FK_Comments_Users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.MappingsTable" Width="1.5" PointX="0.75" PointY="7.375" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.Shopper_Information" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.Users11" Width="1.5" PointX="7.75" PointY="7.75" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.UsersTable" Width="1.5" PointX="3" PointY="7" />
+        <AssociationConnector Association="Shopping_DBModel2.FK_UsersTable_MappingsTable" />
+        <AssociationConnector Association="Shopping_DBModel2.FK_Users_Users" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.contact_us" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.feedback" Width="1.5" PointX="3.375" PointY="10.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
