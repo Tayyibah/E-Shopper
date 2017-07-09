@@ -86,7 +86,8 @@ MyApp = (function () {
         var settings = {
             type: "POST",
            // url: window.BasePath + 'Product2/Save'
-            url: '@Url.Content("~/Product2/Save)',
+          //  url: '@Url.Content("~/Product2/Save")',
+            url: '@Url.Content("~/Product2/Save")',
           //  url: '~/Product2/Save',
             contentType: false,
             processData: false,
