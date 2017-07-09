@@ -87,7 +87,7 @@ MyApp = (function () {
             type: "POST",
            // url: window.BasePath + 'Product2/Save'
           //  url: '/Save',
-            url: "/Save",
+            url: "/Product2/Save",
           //  url: '~/Product2/Save',
             contentType: false,
             processData: false,
