@@ -279,16 +279,19 @@ namespace EAD_Project.Controllers
             if (Request.Files["Image"] != null)
             {
                 var file = Request.Files["Image"];
+                System.Diagnostics.Debug.WriteLine("This will be displayed in output window");
                 if (file.FileName != "")
                 {
+                    System.Diagnostics.Debug.WriteLine("This will be displayed in output window");
                     var ext = System.IO.Path.GetExtension(file.FileName);
-
                     //Generate a unique name using Guid
                     uniqueName = Guid.NewGuid().ToString() + ext;
 
+                    System.Diagnostics.Debug.WriteLine("This will be displayed in output window");
                     //Get physical path of our folder where we want to save images
                     var rootPath = Server.MapPath("~/App_Data/UploadedFiles");
 
+                    System.Diagnostics.Debug.WriteLine("This will be displayed in output window");
                     var fileSavePath = System.IO.Path.Combine(rootPath, uniqueName);
 
                     // Save the uploaded file to "UploadedFiles" folder
