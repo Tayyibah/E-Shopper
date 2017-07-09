@@ -84,7 +84,8 @@ MyApp = (function () {
 
         var settings = {
             type: "POST",
-            url: window.BasePath + 'Product2/Save',
+            //url: window.BasePath + 'Product2/Save',
+            url: '~/Product2/Save',
             contentType: false,
             processData: false,
             data: data,
@@ -128,129 +129,6 @@ MyApp = (function () {
         $("#txtPrice").val("");
         $("#prodimg").hide();
     }
-        //function SaveProduct() {
-
-        //    var data = new FormData();
-
-        //    var id = $("#txtProductID").val();
-        //    var name = $("#txtName").val();
-        //    var price = $("#txtPrice").val();
-        //    var oldPicName = $("#txtPictureName").val();
-
-        //    data.append("ProductID", id);
-        //    data.append("Name", name);
-        //    data.append("Price", price);
-        //    data.append("PictureName", oldPicName);
-
-
-        //    var files = $("#myfile").get(0).files;
-        //    if (files.length > 0) {
-        //        data.append("Image", files[0]);
-        //    }
-
-        //    var settings = {
-        //        type: "POST",
-        //        url: window.BasePath + 'Product2/Save',
-        //        contentType: false,
-        //        processData: false,
-        //        data: data,
-        //        success: function (r) {
-        //            console.log(r);
-
-        //            var obj = {};
-        //            obj.data = [];
-        //            obj.data.push({ ProductID: r.ProductID, Name: name, Price: price, PictureName: r.PictureName });
-
-        //            var source = $("#listtemplate").html();
-        //            var template = Handlebars.compile(source);
-
-        //            var html = template(obj);
-
-        //            if (id > 0) {
-        //                $("#tblBody tr[pid=" + id + "]").replaceWith(html);
-        //            }
-        //            else {
-        //                $("#tblBody").prepend(html);
-        //            }
-
-        //            BindEvents();
-
-        //            Clear();
-
-        //            alert("record is saved");
-        //        },
-        //        error: function () {
-        //            alert('error has occurred');
-        //        }
-        //    };
-
-        //    $.ajax(settings);
-        //}
-
-    //    var data = new FormData();
-
-    //    var id = $("#txtProductID").val();
-    //    var name = $("#txtName").val();
-    //    var price = $("#txtPrice").val();
-    //    var oldPicName = $("#txtPictureName").val();
-
-    //    data.append("ProductID", id);
-    //    data.append("Name", name);
-    //    data.append("Price", price);
-    //    data.append("PictureName", oldPicName);
-
-    //    //var data = new
-    //    //{
-    //    //    success = true,
-    //    //    UserID = SessionManager.User.Name,
-    //    //    PictureName = SessionManager.User.PictureName
-    //    //};
-    //    //return Json(data, JsonRequestBehavior.AllowGet);
-
-    //    var files = $("#myfile").get(0).files;
-    //    if (files.length > 0) {
-    //        data.append("Image", files[0]);
-    //    }
-
-    //    var settings = {
-    //        type: "POST",
-    //        url: window.BasePath + 'Product2/addToCart',
-    //        contentType: false,
-    //        processData: false,
-    //        data: data,
-    //        success: function (r) {
-    //            console.log(r);
-
-    //            var obj = {};
-    //            obj.data = [];
-    //            obj.data.push({ ProductID: r.ProductID, Name: name, Price: price, PictureName: r.PictureName });
-
-    //            var source = $("#listtemplate").html();
-    //            var template = Handlebars.compile(source);
-
-    //            var html = template(obj);
-
-    //            if (id > 0) {
-    //                $("#tblBody tr[pid=" + id + "]").replaceWith(html);
-    //            }
-    //            else {
-    //                $("#tblBody").prepend(html);
-    //            }
-
-    //            BindEvents();
-
-    //            Clear();
-
-    //            alert("record is saved");
-    //        },
-    //        error: function () {
-    //            alert('error has occurred');
-    //        }
-    //    };
-
-    //    $.ajax(settings);
-    //}
-
     function LoadProducts() {
 
 
@@ -335,7 +213,7 @@ MyApp = (function () {
                 $("#txtPictureName").val(resp.data.PictureName);
                 $("#txtName").val(resp.data.Name);
                 $("#txtPrice").val(resp.data.Price);
-                $("#prodimg").show().attr("src", window.BasePath + "UploadedFiles/" + resp.data.PictureName);
+                $("#prodimg").show().attr("src", "~/UploadedFiles/" + resp.data.PictureName);
 
             });
 

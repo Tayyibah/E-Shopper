@@ -286,7 +286,7 @@ namespace EAD_Project.Controllers
                     uniqueName = Guid.NewGuid().ToString() + ext;
 
                     //Get physical path of our folder where we want to save images
-                    var rootPath = Server.MapPath("~/UploadedFiles");
+                    var rootPath = Server.MapPath("/UploadedFiles");
 
                     var fileSavePath = System.IO.Path.Combine(rootPath, uniqueName);
 
