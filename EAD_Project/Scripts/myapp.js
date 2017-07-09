@@ -87,14 +87,12 @@ MyApp = (function () {
             type: "POST",
            // url: window.BasePath + 'Product2/Save'
           //  url: '/Save',
-            url: '@Url.Content("~/Product2/Save")',
+            url: "~/Product2/Save",
           //  url: '~/Product2/Save',
             contentType: false,
             processData: false,
             data: data,
             success: function (r) {
-                console.log(r);
-
                 var obj = {};
                 obj.data = [];
                 obj.data.push({ ProductID: r.ProductID, Name: name, Price: price, PictureName: r.PictureName });
