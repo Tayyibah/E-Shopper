@@ -92,10 +92,11 @@
                     {{#each Comments}}
                     <div class="comment">
                         <div class="picture">
-                            <img src='C:/Users/Tayyibah/Documents/GitHub/E-Shopper/EAD_Project/UploadedFiles/{{PictureName}}' />
-                        </div>
-                        <div>
-                            <span class="name">{{UserName}}</span>
+                            '@Url.Content(Server.MapPath("~App_Data/UploadedFiles"))/{{PictureName}}'                        </div>
+                            
+                                                    <div>
+                            
+                                                        <span class="name">{{UserName}}</span>
                             <span class="comment-text"> {{CommentText}}</span> <br />
                             <span class="comment-text commenton">{{CommentOn}}</span>
                         </div>
