@@ -24,9 +24,10 @@ MyApp = (function () {
 
         var settings = {
             type: "POST",
+
             url: window.BasePath + 'Product2/Save',
             contentType: false,
-            processData: false,
+            processData: true,
             data: data,
             success: function (r) {
                 console.log(r);
