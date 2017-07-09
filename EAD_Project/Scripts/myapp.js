@@ -87,7 +87,7 @@ MyApp = (function () {
             type: "POST",
            // url: window.BasePath + 'Product2/Save'
           //  url: '/Save',
-            url: "~/Product2/Save",
+            url: "/Save",
           //  url: '~/Product2/Save',
             contentType: false,
             processData: false,
@@ -116,7 +116,7 @@ MyApp = (function () {
                 alert("record is saved");
             },
             error: function () {
-                alert('error has occurddddddddddddddred');
+                alert('error has occured');
             }
         };
 
