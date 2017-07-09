@@ -82,6 +82,20 @@
           <Property Name="AddToCart" Type="bit" />
           <Property Name="Date" Type="date" />
         </EntityType>
+        <EntityType Name="Product1">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Price" Type="int" />
+          <Property Name="PictureName" Type="varchar(max)" />
+          <Property Name="CreatedOn" Type="date" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="date" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
         <EntityType Name="Products">
           <Key>
             <PropertyRef Name="ProductID" />
@@ -279,6 +293,7 @@
           <EntitySet Name="contact_us" EntityType="Self.contact_us" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="feedback" EntityType="Self.feedback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MappingsTable" EntityType="Self.MappingsTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product1" EntityType="Self.Product1" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shopper_Information" EntityType="Self.Shopper_Information" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -548,6 +563,7 @@
           </AssociationSet>
           <EntitySet Name="contact_us" EntityType="Shopping_DBModel2.contact_us" />
           <EntitySet Name="feedbacks" EntityType="Shopping_DBModel2.feedback" />
+          <EntitySet Name="Product1" EntityType="Shopping_DBModel2.Product1" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -650,6 +666,20 @@
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="message" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Feedback_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Product1">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="PictureName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="0" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -842,6 +872,21 @@
                 <ScalarProperty Name="Feedback_no" ColumnName="Feedback_no" />
                 <ScalarProperty Name="message" ColumnName="message" />
                 <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product1">
+            <EntityTypeMapping TypeName="Shopping_DBModel2.Product1">
+              <MappingFragment StoreEntitySet="Product1">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="PictureName" ColumnName="PictureName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

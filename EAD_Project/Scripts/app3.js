@@ -63,7 +63,8 @@ MyApp = (function () {
                 $("#txtPictureName").val(resp.data.PictureName);
                 $("#txtName").val(resp.data.Name);
                 $("#txtPrice").val(resp.data.Price);
-                $("#prodimg").show().attr("src", window.BasePath + "UploadedFiles/" + resp.data.PictureName);
+                //$("#prodimg").show().attr("src", window.BasePath + "UploadedFiles/" + resp.data.PictureName);
+                $("#prodimg").show().attr("src", "C:/Users/Tayyibah/Documents/GitHub/E-Shopper/EAD_Project/UploadedFiles/" + resp.data.PictureName);
 
             });
 

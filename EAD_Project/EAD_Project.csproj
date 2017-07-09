@@ -422,6 +422,7 @@
     <Content Include="Views\Home\forgetPassword.cshtml" />
     <Content Include="Views\Shared\Page.cshtml" />
     <Content Include="Views\Home\LoginAndSignup.cshtml" />
+    <Content Include="Views\Home\zz.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

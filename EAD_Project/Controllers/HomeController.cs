@@ -13,7 +13,40 @@ namespace EAD_Project.Controllers
 {
     public class HomeController : Controller
     {
-        
+
+        [HttpPost]
+        public ActionResult zz(FormCollection fc, HttpPostedFileBase file)
+        {
+            var context = new Shopping_DBEntities4();
+            Product1 tbl = new Product1();
+            var allowedExtensions = new[] {
+            ".Jpg", ".png", ".PNG", ".jpg", "jpeg"
+        };
+            tbl.Name = fc["Id"].ToString();
+            tbl.PictureName = file.ToString(); //getting complete url  
+            tbl.Name = fc["Name"].ToString();
+            var fileName = System.IO.Path.GetFileName(file.FileName); //getting only file name(ex-ganesh.jpg)  
+            var ext = System.IO.Path.GetExtension(file.FileName); //getting the extension(ex-.jpg)  
+            if (allowedExtensions.Contains(ext)) //check what type of extension  
+            {
+                string name = System.IO.Path.GetFileNameWithoutExtension(fileName); //getting file name without extension  
+                string myfile = name + ext; //appending the name with id  
+                                                           // store the file inside ~/project folder(Img)  
+                var path = System.IO.Path.Combine(Server.MapPath("~/UploadedFiles"), myfile);
+                tbl.PictureName = "";
+                tbl.isActive = true;
+                tbl.Name = path;
+                tbl.Price = 12;
+                context.Product1.Add(tbl);
+                context.SaveChanges();
+                file.SaveAs(path);
+            }
+            else
+            {
+                ViewBag.message = "Please choose only Image file";
+            }
+            return View();
+        }
         public ActionResult zz( )
         {
 
@@ -287,8 +320,9 @@ namespace EAD_Project.Controllers
                     uniqueName = Guid.NewGuid().ToString() + ext;
 
                     //Get physical path of our folder where we want to save images
-                    var rootPath = Server.MapPath("~/UploadedFiles");
-
+                   // var rootPath = Server.MapPath("~/UploadedFiles");
+                    var rootPath ="C:/Users/Tayyibah/Documents/GitHub/E-Shopper/EAD_Project/UploadedFiles";
+                    
                     var fileSavePath = System.IO.Path.Combine(rootPath, uniqueName);
 
                     // Save the uploaded file to "UploadedFiles" folder
