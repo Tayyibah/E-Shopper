@@ -264,6 +264,7 @@ namespace EAD_Project.Controllers
                 return Content("<script>alert('invalid user name or password');document.location='login'</script>");
            // return View();
         }
+
         [HttpPost]
         public /*JsonResult*/ActionResult SaveUsers(User u)
         {
@@ -296,20 +297,20 @@ namespace EAD_Project.Controllers
                     u.PictureName = uniqueName;
                 }
             }
-                using (var context = new Shopping_DBEntities4())
+            using (var context = new Shopping_DBEntities4())
+            {
+                var student = new DB.User
                 {
-                    var student = new DB.User
-                    {
-                        Name = u.Name,
-                        Login = u.Name,
-                        Password = password,
-                        isAdmin = false,
-                        isActive = true,
-                        PictureName = u.PictureName,
-                        Designation = u.Designation,
-                        Email = u.Email
+                    Name = u.Name,
+                    Login = u.Name,
+                    Password = password,
+                    isAdmin = false,
+                    isActive = true,
+                    PictureName = u.PictureName,
+                    Designation = u.Designation,
+                    Email = u.Email
 
-                    };
+                };
                 context.Users.Add(student);
                 context.SaveChanges();
                 var data = new
@@ -319,16 +320,92 @@ namespace EAD_Project.Controllers
                     //PictureName = u.PictureName
                 };
                 if (student != null)
-                   // return Json(data, JsonRequestBehavior.AllowGet); return Json(data, JsonRequestBehavior.AllowGet);
-                return Content("<script>alert('thanks for registering!!!'); var data = new{success = true}; document.location='NormalUser'</script>");
-               // return View();
+                    // return Json(data, JsonRequestBehavior.AllowGet); return Json(data, JsonRequestBehavior.AllowGet);
+                    return Content("<script>alert('thanks for registering!!!'); var data = new{success = true}; document.location='NormalUser'</script>");
+                // return View();
                 else
                     return Content("<script>alert('registering unsuccessful!!!'); var data = new{success = false}; document.location='NormalUser'</script>");
 
             }
-         //   return Content("<script>alert('registering unsuccessful!!!'); var data = new{success = false}; document.location='NormalUser'</script>");
+            //   return Content("<script>alert('registering unsuccessful!!!'); var data = new{success = false}; document.location='NormalUser'</script>");
 
         }
+
+        ////var pid = UserBO.SaveUsers(u);
+        //var data = new
+        //{
+        //    success = true,
+        //    //ProductID = pid,
+        //    //PictureName = u.PictureName
+        //};
+        //return Json(data, JsonRequestBehavior.AllowGet);
+        //return Content("<script>alert('thanks for registering!!!');document.location='NormalUser'</script>");
+
+        //[HttpPost]
+        //public /*JsonResult*/ActionResult SaveUsers(User u)
+        //{
+
+        //    string password = Request["password1"];
+        //    string password2 = Request["cn_password"];
+        //    if (password != password2)
+        //        return Content("<script>alert('Password mismatch!!!');var data = new{success = false};document.location='login'</script>");
+
+        //    var uniqueName = "";
+
+        //    if (Request.Files["Image"] != null)
+        //    {
+        //        var file = Request.Files["Image"];
+        //        if (file.FileName != "")
+        //        {
+        //            var ext = System.IO.Path.GetExtension(file.FileName);
+
+        //            //Generate a unique name using Guid
+        //            uniqueName = Guid.NewGuid().ToString() + ext;
+
+        //            //Get physical path of our folder where we want to save images
+        //            var rootPath = Server.MapPath("~/UploadedFiles");
+
+        //            var fileSavePath = System.IO.Path.Combine(rootPath, uniqueName);
+
+        //            // Save the uploaded file to "UploadedFiles" folder
+        //            file.SaveAs(fileSavePath);
+
+        //            u.PictureName = uniqueName;
+        //        }
+        //    }
+        //        using (var context = new Shopping_DBEntities4())
+        //        {
+        //            var student = new DB.User
+        //            {
+        //                Name = u.Name,
+        //                Login = u.Name,
+        //                Password = password,
+        //                isAdmin = false,
+        //                isActive = true,
+        //                PictureName = u.PictureName,
+        //                Designation = u.Designation,
+        //                Email = u.Email
+
+        //            };
+        //        context.Users.Add(student);
+        //        context.SaveChanges();
+        //        var data = new
+        //        {
+        //            success = true,
+        //            //ProductID = pid,
+        //            //PictureName = u.PictureName
+        //        };
+        //        if (student != null)
+        //           // return Json(data, JsonRequestBehavior.AllowGet); return Json(data, JsonRequestBehavior.AllowGet);
+        //        return Content("<script>alert('thanks for registering!!!'); var data = new{success = true}; document.location='NormalUser'</script>");
+        //       // return View();
+        //        else
+        //            return Content("<script>alert('registering unsuccessful!!!'); var data = new{success = false}; document.location='NormalUser'</script>");
+
+        //    }
+        // //   return Content("<script>alert('registering unsuccessful!!!'); var data = new{success = false}; document.location='NormalUser'</script>");
+
+        //}
 
         ////var pid = UserBO.SaveUsers(u);
         //var data = new
