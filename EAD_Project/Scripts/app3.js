@@ -28,7 +28,7 @@ MyApp = (function () {
 
         var settings = {
             type: "POST",
-            url: '~/Home/SaveUsers',
+            url: '/Home/SaveUsers',
             contentType: false,
             processData: true,
             data: data,
