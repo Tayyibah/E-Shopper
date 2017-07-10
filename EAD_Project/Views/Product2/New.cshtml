@@ -92,7 +92,10 @@
                     {{#each Comments}}
                     <div class="comment">
                         <div class="picture">
-                            '@Url.Content(Server.MapPath("~App_Data/UploadedFiles"))/{{PictureName}}'                        </div>
+                            @*'@Url.Content(Server.MapPath("~App_Data/UploadedFiles"))/{{PictureName}}'*@ 
+                            '@Url.Content("~App_Data/UploadedFiles")/{{PictureName}}' 
+                            'Server.MapPath("~App_Data/UploadedFiles")/{{PictureName}}' 
+                                               </div>
                             
                                                     <div>
                             
