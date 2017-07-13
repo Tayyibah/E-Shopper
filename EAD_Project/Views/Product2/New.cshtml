@@ -61,7 +61,9 @@
             </div>
             <div class="col-sm-6">
                 @*C:/Users/Tayyibah/Documents/GitHub/E-Shopper/EAD_Project*@
-                <img src='C:/Users/Tayyibah/Documents/GitHub/E-Shopper/EAD_Project/UploadedFiles/{{PictureName}}' class="girl img-responsive" alt="" />
+               @* <img src='C:/Users/Tayyibah/Documents/GitHub/E-Shopper/EAD_Project/UploadedFiles/{{PictureName}}' class="girl img-responsive" alt="" />*@
+                <img src='@Url.Content("~/UploadedFiles")/{{PictureName}}' class="girl img-responsive" alt="" />
+                
                 @*<img src='@Url.Content("~/UploadedFiles")/{{PictureName}}' class="girl img-responsive" alt="" />*@
             </div>
             <br />
@@ -93,13 +95,13 @@
                     <div class="comment">
                         <div class="picture">
 
-                            <img src= '@Url.Content(Server.MapPath("~/UploadedFiles"))/{{PictureName}}' />
-                            <img src='@Url.Content("~/UploadedFiles")/{{PictureName}}' />
-                            <img src= 'Server.MapPath("~/App_Data/UploadedFiles")/{{PictureName}}' />
-                            <img src='@Url.Content("~/UploadedFiles")/{{PictureName}}' />
-                            <img src='C:/Users/Tayyibah/Documents/GitHub/E-Shopper/EAD_Project/UploadedFiles/admin.jpg' />
+                           @* <img src= '@Url.Content(Server.MapPath("~/UploadedFiles"))/{{PictureName}}' />*@
+                           @* <img src='@Url.Content("~/UploadedFiles")/{{PictureName}}' />*@
+                            @*<img src= 'Server.MapPath("~/App_Data/UploadedFiles")/{{PictureName}}' />*@
+                            @*<img src='C:/Users/Tayyibah/Documents/GitHub/E-Shopper/EAD_Project/UploadedFiles/admin.jpg' />
                             <img src={{PictureName}} />
-                            <img src='~/UploadedFiles/{{PictureName}}' />
+                            <img src='~/UploadedFiles/{{PictureName}}' />*@
+                            <img src='@Url.Content("~/UploadedFiles")/{{PictureName}}' />
                                                </div>
                             
                                                     <div>
@@ -135,7 +137,7 @@
     <div class="comment">
         <div class="picture">           
              @*<img src="~/UploadedFiles/")/{{PictureName}} />*@      
-              <img src="UploadedFiles/{{PictureName}}" />
+              <img src='@Url.Content("~/UploadedFiles")/{{PictureName}}' />
             @*<img src='@Url.Content("~/UploadedFiles")/{{PictureName}}' />*@
             @*<img src='@Url.Content("~/UploadedFiles")/{{PictureName}}' />*@
         </div>
