@@ -36,5 +36,6 @@ namespace DB
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Users11> Users11 { get; set; }
         public virtual DbSet<UsersTable> UsersTables { get; set; }
+        public virtual DbSet<Document> Documents { get; set; }
     }
 }

@@ -149,6 +149,7 @@
     <Compile Include="BAL\Shopper_Information.cs" />
     <Compile Include="BAL\UserBO.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Product2Controller.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -176,6 +177,8 @@
     <Compile Include="Models\feedback.cs" />
     <Compile Include="Models\login_form.cs" />
     <Compile Include="Models\MappingsModel.cs" />
+    <Compile Include="Models\PhotoForSingleItem.cs" />
+    <Compile Include="Models\PhotoViewImage.cs" />
     <Compile Include="Models\ProductDTO.cs" />
     <Compile Include="Models\product_details.cs" />
     <Compile Include="Models\reply_form.cs" />
@@ -184,6 +187,7 @@
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\Signup.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\SuccessModel.cs" />
     <Compile Include="Models\TeacherModel.cs" />
     <Compile Include="Models\UserDTO.cs" />
     <Compile Include="Models\UserMappingClass.cs" />
@@ -327,6 +331,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\contact.js" />
+    <Content Include="Scripts\dropzone.js" />
     <Content Include="Scripts\emailvalidation.js" />
     <Content Include="Scripts\forgetPassword.js" />
     <Content Include="Scripts\GetProductForSell.js" />
@@ -335,6 +340,7 @@
     <Content Include="Scripts\gmaps.js" />
     <Content Include="Scripts\handlebars.js" />
     <Content Include="Scripts\html5shiv.js" />
+    <Content Include="Scripts\JavaScript.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -423,10 +429,13 @@
     <Content Include="Views\Shared\Page.cshtml" />
     <Content Include="Views\Home\LoginAndSignup.cshtml" />
     <Content Include="Views\Home\zz.cshtml" />
+    <Content Include="Views\Home\Upload.cshtml" />
+    <Content Include="Views\Home\II.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\abayas\" />
+    <Folder Include="Views\Document\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

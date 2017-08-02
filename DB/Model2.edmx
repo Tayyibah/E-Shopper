@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Shopping_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Shopping_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="addToCart">
           <Key>
             <PropertyRef Name="cartID" />
@@ -42,14 +42,6 @@
           <Property Name="UserID" Type="int" />
           <Property Name="Total" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'Shopping_DB.dbo.cart' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="cart">
-          <Property Name="user_option" Type="varchar" MaxLength="50" />
-          <Property Name="single_fieldCountry" Type="varchar" MaxLength="50" />
-          <Property Name="single_field_Region" Type="varchar" MaxLength="50" />
-          <Property Name="Zip_Code" Type="varchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="Comments">
           <Key>
             <PropertyRef Name="CommentID" />
@@ -72,13 +64,19 @@ warning 6013: The table/view 'Shopping_DB.dbo.cart' does not have a primary key 
           <Property Name="message" Type="varchar" MaxLength="50" />
           <Property Name="Contact_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'Shopping_DB.dbo.login_form' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="login_form">
-          <Property Name="name" Type="varchar" MaxLength="50" />
-          <Property Name="Email_Address" Type="varchar" MaxLength="50" />
-          <Property Name="checkbox_name" Type="bit" />
-        </EntityType>-->
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="DocumentId" />
+          </Key>
+          <Property Name="DocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Size" Type="bigint" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FileContent" Type="varbinary(max)" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
         <EntityType Name="MappingsTable">
           <Key>
             <PropertyRef Name="MappingId" />
@@ -89,13 +87,6 @@ warning 6013: The table/view 'Shopping_DB.dbo.login_form' does not have a primar
           <Property Name="AddToCart" Type="bit" />
           <Property Name="Date" Type="date" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'Shopping_DB.dbo.product_details' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="product_details">
-          <Property Name="name" Type="varchar" MaxLength="50" />
-          <Property Name="email" Type="varchar" MaxLength="50" />
-          <Property Name="textarea_text" Type="varchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="Products">
           <Key>
             <PropertyRef Name="ProductID" />
@@ -110,14 +101,6 @@ warning 6013: The table/view 'Shopping_DB.dbo.product_details' does not have a p
           <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
           <Property Name="isActive" Type="bit" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'Shopping_DB.dbo.reply_form' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="reply_form">
-          <Property Name="name" Type="varchar" MaxLength="50" />
-          <Property Name="email" Type="varchar" MaxLength="50" />
-          <Property Name="website" Type="varchar" MaxLength="50" />
-          <Property Name="message" Type="varchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="Shopper_Information">
           <Key>
             <PropertyRef Name="User_Name" />
@@ -127,14 +110,6 @@ warning 6013: The table/view 'Shopping_DB.dbo.reply_form' does not have a primar
           <Property Name="password" Type="varchar" MaxLength="50" />
           <Property Name="password2" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'Shopping_DB.dbo.Signup' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Signup">
-          <Property Name="name" Type="varchar" MaxLength="50" />
-          <Property Name="email" Type="varchar" MaxLength="50" />
-          <Property Name="Designation" Type="varchar" MaxLength="50" />
-          <Property Name="password" Type="varchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -276,6 +251,7 @@ warning 6013: The table/view 'Shopping_DB.dbo.Signup' does not have a primary ke
           <EntitySet Name="Bill_To" EntityType="Self.Bill_To" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="contact_us" EntityType="Self.contact_us" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MappingsTable" EntityType="Self.MappingsTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shopper_Information" EntityType="Self.Shopper_Information" Schema="dbo" store:Type="Tables" />
@@ -312,8 +288,7 @@ warning 6013: The table/view 'Shopping_DB.dbo.Signup' does not have a primary ke
             <End Role="UsersTable" EntitySet="UsersTable" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Shopping_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -599,7 +574,21 @@ warning 6013: The table/view 'Shopping_DB.dbo.Signup' does not have a primary ke
             <End Role="Users" EntitySet="Users" />
             <End Role="Users1" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="Documents" EntityType="Shopping_DBModel.Document" />
         </EntityContainer>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="DocumentId" />
+          </Key>
+          <Property Name="DocumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Size" Type="Int64" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FileContent" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -758,6 +747,20 @@ warning 6013: The table/view 'Shopping_DB.dbo.Signup' does not have a primary ke
                 <ScalarProperty Name="UsersType" ColumnName="UsersType" />
                 <ScalarProperty Name="MappingId" ColumnName="MappingId" />
                 <ScalarProperty Name="PictureName" ColumnName="PictureName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="Shopping_DBModel.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="FileContent" ColumnName="FileContent" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

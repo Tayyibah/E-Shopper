@@ -40,6 +40,7 @@ namespace DB
         public virtual DbSet<contact_us> contact_us { get; set; }
         public virtual DbSet<feedback> feedbacks { get; set; }
         public virtual DbSet<Product1> Product1 { get; set; }
+        public virtual DbSet<Document> Documents { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

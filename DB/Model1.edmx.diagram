@@ -25,6 +25,7 @@
         <EntityTypeShape EntityType="Shopping_DBModel2.contact_us" Width="1.5" PointX="0.75" PointY="10.75" />
         <EntityTypeShape EntityType="Shopping_DBModel2.feedback" Width="1.5" PointX="3.375" PointY="10.75" />
         <EntityTypeShape EntityType="Shopping_DBModel2.Product1" Width="1.5" PointX="10.375" PointY="4.75" />
+        <EntityTypeShape EntityType="Shopping_DBModel2.Document" Width="1.5" PointX="10.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

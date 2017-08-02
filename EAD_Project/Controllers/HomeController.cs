@@ -8,13 +8,188 @@ using EAD_Project.Security;
 using System.Web.Mvc;
 using EAD_Project.BAL;
 using EAD_Project.Views.Home;
+using System.IO;
 
 namespace EAD_Project.Controllers
 {
+
     public class HomeController : Controller
     {
 
-        [HttpPost]
+        public ActionResult II()
+        {
+            return View();
+        }
+
+    //    [HttpGet]
+    //public ActionResult Show(int? id)
+    //{
+    //    string mime;
+    //    byte[] bytes = LoadImage(id.Value, out mime);
+    //    return File(bytes, mime);
+    //}
+    //[HttpPost]
+    //public ActionResult Upload()
+    //    {
+    //        SuccessModel viewModel = new SuccessModel();
+    //        if (Request.Files.Count == 1)
+    //        {
+    //            var name = Request.Files[0].FileName;
+    //            var size = Request.Files[0].ContentLength;
+    //            var type = Request.Files[0].ContentType;
+    //            viewModel.Success = HandleUpload(Request.Files[0].InputStream, name, size, type);
+    //        }
+    //        return Json(viewModel);
+    //    }
+    //private bool HandleUpload(Stream fileStream, string name, int size, string type)
+    //{
+    //    bool handled = false;
+
+    //    try
+    //    {
+    //        byte[] documentBytes = new byte[fileStream.Length];
+    //        fileStream.Read(documentBytes, 0, documentBytes.Length);
+
+    //        Document databaseDocument = new Document
+    //        {
+    //            CreadtedOn = DateTime.Now,
+    //            FileContent = documentBytes,
+    //            IsDeleted = false,
+    //            Name = name,
+    //            Size = size,
+    //            Type = type
+    //        };
+
+    //        using (Shopping_DBEntities4 databaseContext = new Shopping_DBEntities4())
+    //        {
+    //            databaseContext.Documents.Add(databaseDocument);
+    //            handled = (databaseContext.SaveChanges() > 0);
+    //        }
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        // Oops, something went wrong, handle the exception
+    //    }
+
+    //    return handled;
+    //}
+    //private byte[] LoadImage(int id, out string type)
+    //{
+    //    byte[] fileBytes = null;
+    //    string fileType = null;
+    //    using (Shopping_DBEntities4 databaseContext = new Shopping_DBEntities4())
+    //    {
+    //        var databaseDocument = databaseContext.Documents.FirstOrDefault(doc => doc.DocumentId == id);
+    //        if (databaseDocument != null)
+    //            {
+    //               // fileBytes = Convert.ToString(databaseDocument.FileContent);
+    //                fileBytes = databaseDocument.FileContent;
+    //                fileType = databaseDocument.Type;
+    //        }
+    //    }
+    //    type = fileType;
+    //    return fileBytes;
+    //}
+        //[HttpGet]
+
+        //public ActionResult Upload()
+        //{
+        //    return View();
+        //}
+        //public ActionResult Upload(PhotoForSingleItem photo)
+        //{
+        //    //PhotoForSingleItem is just a class that has properties
+        //    // Name and Alternate text.  I use strongly typed Views and Actions
+        //    //  because I'm not a fan of using string to get the posted data from the
+        //    //  FormCollection.  That just seems ugly and unreliable to me.
+
+        //    //PhotoViewImage is just a Entityframework class that has
+        //    // String Name, String AlternateText, Byte[] ActualImage,
+        //    //  and String ContentType
+        //    PhotoViewImage newImage = new PhotoViewImage();
+        //    HttpPostedFileBase file = Request.Files["OriginalLocation"];
+        //    newImage.ImageName = photo.ImageName;
+        //    newImage.ImageAlt = photo.ImageAlt;
+
+        //    //Here's where the ContentType column comes in handy.  By saving
+        //    //  this to the database, it makes it infinitely easier to get it back
+        //    //  later when trying to show the image.
+        //    newImage.ContentType = file.ContentType;
+
+        //    Int32 length = file.ContentLength;
+        //    //This may seem odd, but the fun part is that if
+        //    //  I didn't have a temp image to read into, I would
+        //    //  get memory issues for some reason.  Something to do
+        //    //  with reading straight into the object's ActualImage property.
+        //    byte[] tempImage = new byte[length];
+        //    file.InputStream.Read(tempImage, 0, length);
+        //    newImage.ImageAlt = tempImage;
+
+        //    newImage.Save();
+
+        //    //This part is completely optional.  You could redirect on success
+        //    // or handle errors ect.  Just wanted to keep this simple for the example.
+        //    return View();
+        //}
+
+        //public class ImageResult : ActionResult
+        //{
+        //    public String ContentType { get; set; }
+        //    public byte[] ImageBytes { get; set; }
+        //    public String SourceFilename { get; set; }
+
+        //    //This is used for times where you have a physical location
+        //    public ImageResult(String sourceFilename, String contentType)
+        //    {
+        //        SourceFilename = sourceFilename;
+        //        ContentType = contentType;
+        //    }
+
+        //    //This is used for when you have the actual image in byte form
+        //    //  which is more important for this post.
+        //    public ImageResult(byte[] sourceStream, String contentType)
+        //    {
+        //        ImageBytes = sourceStream;
+        //        ContentType = contentType;
+        //    }
+
+        //    public override void ExecuteResult(ControllerContext context)
+        //    {
+        //        var response = context.HttpContext.Response;
+        //        response.Clear();
+        //        response.Cache.SetCacheability(HttpCacheability.NoCache);
+        //        response.ContentType = ContentType;
+
+        //        //Check to see if this is done from bytes or physical location
+        //        //  If you're really paranoid you could set a true/false flag in
+        //        //  the constructor.
+        //        if (ImageBytes != null)
+        //        {
+        //            var stream = new MemoryStream(ImageBytes);
+        //            stream.WriteTo(response.OutputStream);
+        //            stream.Dispose();
+        //        }
+        //        else
+        //        {
+        //            response.TransmitFile(SourceFilename);
+        //        }
+        //    }
+
+        //    [AcceptVerbs(HttpVerbs.Get)]
+        //    public ActionResult ShowPhoto(Int32 id)
+        //    {
+        //        //This is my method for getting the image information
+        //        // including the image byte array from the image column in
+        //        // a database.
+        //        PhotoViewImage image = PhotoViewImage.GetById(id);
+        //        //As you can see the use is stupid simple.  Just get the image bytes and the
+        //        //  saved content type.  See this is where the contentType comes in real handy.
+        //        ImageResult result = new ImageResult(image.ActualImage, image.ContentType);
+
+        //        return result;
+        //    }
+
+            [HttpPost]
         public ActionResult zz(FormCollection fc, HttpPostedFileBase file)
         {
             var context = new Shopping_DBEntities4();
@@ -856,7 +1031,21 @@ namespace EAD_Project.Controllers
             //    ViewBag.total = total;
             //    ViewData["total"] = total;
             //}
-            return View();
+            using (var context = new Shopping_DBEntities4())
+            {
+                var student = (from d in context.Bill_To
+                               where d.UserID == SessionManager.User.UserID
+                               select d).ToList();
+                var total = 0;
+                var total1 = student.ToList();
+                foreach (var x in total1)
+                {
+                    total = (Int32)x.Total;
+                }
+                ViewBag.total = total;
+                ViewData["total"] = total;
+            }
+                return View();
             }
             [HttpGet]
             public ActionResult checkout_save()
