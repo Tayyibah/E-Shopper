@@ -329,6 +329,7 @@
     <Content Include="Scripts\billTo.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\myProject.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\contact.js" />
     <Content Include="Scripts\dropzone.js" />
@@ -367,7 +368,9 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="UploadedFiles\admin.jpg" />
     <Content Include="UploadedFiles\user.jpg" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
